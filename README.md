@@ -4,9 +4,7 @@ This demo applications for Dynatrace easy travel, this apps develop based on eas
 
 ## Screen easyTravelApp sample
 
-![Home Screen](../blob/docs/easytraveleasytravel-home.png?raw=true "Home Pages")
-![FindJourney Screen](../blob/docs/easytraveleasytravel-search.png?raw=true "Searc")
-![SpecialOffer Screen](../blob/docs/easytraveleasytravel-speccialoffer.png?raw=true "SpecialOffer")
+![Apps](../blob/docs/easytraveleasytravel-mobile.png?raw=true)
 
 
 ## Getting Started
