@@ -120,15 +120,22 @@ export default class FindJourney extends React.Component {
     }
   }
 
+  setCitiesCheck = async(id, isChecked) => {
+    let years = Constant.cities.filter(function(item){
+      item.id == id;
+      item.checked = isChecked;
+      return item;
+    });
+    //this.setState({locations: years[0].id});
+  }
+
   onClear = async () => {
       this.setState({dateFrom: ''});
       this.setState({dateTo: ''});
       this.setState({locations: ''});
-      let destination = Constant.cities.filter(function(item){
-        return item.checked == true;
-      });
-      //console.log(destination[0].checked = false);
-      this.setState({locations: destination[0].name})
+      if(this.state.locations) {
+        this.setCitiesCheck(this.state.locations, false);
+      }
   }
 
   render() {

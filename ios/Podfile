@@ -79,6 +79,7 @@ target 'easytravelApp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+
   target 'easytravelAppTests' do
     inherit! :complete
     # Pods for testing
