@@ -65,7 +65,7 @@ function getHeaderRight(route, navigation) {
 //Drawer navigations
 function MainDrawerNavigation(){
   return (
-    <Drawer.Navigator initialRouteName="Profile">
+    <Drawer.Navigator initialRouteName="Signin">
       <Drawer.Screen
         name="Profile"
         component={Profile}
