@@ -34,8 +34,8 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'Home'
-    case 'Settings':
-      return 'Settings'
+    case 'Account':
+      return 'Account'
     case 'Find Journey':
       return 'Find Journey'
     case 'Special Offers':
@@ -58,7 +58,7 @@ function getHeaderRight(route, navigation) {
     : route.params?.screen || 'Home'
 
   switch (routeName) {
-    case 'Settings':
+    case 'Account':
       return (<MenuButton onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} /> )
   }
 }
@@ -101,8 +101,8 @@ function MainTabNavigator() {
             iconName = 'ios-search'
           } else if (route.name == 'Special Offers') {
             iconName = 'ios-pricetags'
-          } else if (route.name == 'Settings') {
-            iconName = 'ios-settings'
+          } else if (route.name == 'Account') {
+            iconName = 'ios-person'
           }
 
           return <Ionicons name={iconName} color={color} size={size} />
@@ -111,7 +111,7 @@ function MainTabNavigator() {
       <Tab.Screen name='Home' component={Home} />
       <Tab.Screen name='Find Journey' component={FindJourney} />
       <Tab.Screen name='Special Offers' component={SpecialOffer} />
-      <Tab.Screen name='Settings' component={MainDrawerNavigation} />
+      <Tab.Screen name='Account' component={MainDrawerNavigation} />
     </Tab.Navigator>
   )
 }

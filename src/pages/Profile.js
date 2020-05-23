@@ -23,6 +23,7 @@ export default class Login extends React.Component {
     const name = await AsyncStorage.getItem("name");
     const username = await AsyncStorage.getItem("username");
     const password = await AsyncStorage.getItem("password");
+    console.log(name);
     if(username && password){
       this.setState({name: name});
       this.setState({username: username});
@@ -64,9 +65,6 @@ export default class Login extends React.Component {
                 <Text style={{color:"#fff"}}>LOGIN</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => {navigation.navigate('Signup')}}>
-                <Text style={styles.loginText}>Signup</Text>
-              </TouchableOpacity>
           </View>
         )
       }

@@ -5,9 +5,9 @@ function Home(props) {
   const { navigation } = props
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>easyTravel!</Text>
-      <Text style={styles.text}>Collect Moments</Text>
-      <Text style={styles.buttonText}>not thinks.</Text>
+      <Text style={{color: '#101010', fontSize: 17, fontWeight: 'bold'}}>easyTravel!</Text>
+      <Text style={{color: '#101010', fontSize: 40, fontWeight: 'bold'}}>Collect Moments</Text>
+      <Text style={{color: '#101010', fontSize: 30, fontWeight: 'bold'}}>not things.</Text>
     </View>
   );
 }
@@ -19,11 +19,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ebebeb'
   },
-  text: {
-    color: '#101010',
-    fontSize: 24,
-    fontWeight: 'bold'
-  }
 })
 
 export default Home;

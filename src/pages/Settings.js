@@ -1,34 +1,23 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+//import { MenuButton, Logo } from "../components/header/header";
 
-function Settings(props) {
-  return(
-    <View></View>
-  )
+export default class Settings extends React.Component {
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Hello! Welcome to my Seting page</Text>
+        <Text>Add Crash reporting</Text>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ebebeb'
-  },
-  text: {
-    color: '#101010',
-    fontSize: 24,
-    fontWeight: 'bold'
-  },
-  buttonContainer: {
-    backgroundColor: '#222',
-    borderRadius: 5,
-    padding: 10,
-    margin: 20
-  },
-  buttonText: {
-    fontSize: 20,
-    color: '#fff'
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
-
-export default Settings;

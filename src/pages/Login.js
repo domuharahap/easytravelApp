@@ -25,9 +25,11 @@ export default class Login extends React.Component {
   login = async () => {
     const username = await AsyncStorage.getItem("username");
     const password = await AsyncStorage.getItem("password");
+    const name = await AsyncStorage.getItem("name");
     if(username && password){
       this.setState({username: username});
       this.setState({password: password});
+      this.setState({name: name});
       this.setState({authenticated: true});
       this.setState({lock: false});
     }
@@ -66,6 +68,7 @@ export default class Login extends React.Component {
           await AsyncStorage.setItem("username", username);
           await AsyncStorage.setItem("email", user.email);
           await AsyncStorage.setItem("password", password);
+          this.setState({authenticate: true});
           this.props.navigation.navigate("Home");
         }else{
           console.log("invalid login");
@@ -77,9 +80,13 @@ export default class Login extends React.Component {
       });
   }
   unLock = async () => {
+    if(this.state.lock){
+      console.log("username password is set");
+    }else {
       this.setState({username: "barnabassas"});
       this.setState({password: "barnabassas"});
       this.setState({lock: false});
+    }
   }
 
   render(){
@@ -88,7 +95,7 @@ export default class Login extends React.Component {
 
     return(
       <View style={styles.container}>
-        <Text style={styles.logo}>Signin</Text>
+        {this.state.authenticated ? <Text style={styles.logo}>Hi {this.state.name} </Text> : <Text style={styles.logo}>Signin</Text> }
         { isLoading ? <ActivityIndicator/> : (
           <>
             <View style={styles.inputView} >
@@ -119,16 +126,14 @@ export default class Login extends React.Component {
                 <TouchableOpacity style={styles.loginBtn} onPress={()=>this.authenticate(this.state.username, this.state.password)}>
                   <Text style={{color:"#fff"}}>LOGIN</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity onPress={this.unLock}>
-                  { this.state.authenticated
-                    ? <Icon name="ios-unlock" size={30} style = {{color: 'black',paddingLeft: 10}}/>
-                    : <Icon name="ios-lock" size={30} style = {{color: 'black',paddingLeft: 10}}/>
-                  }
-                </TouchableOpacity>
               </>
             )}
-
+            <TouchableOpacity onPress={this.unLock}>
+              { this.state.lock
+                ? <Icon name="ios-lock" size={30} style = {{color: 'black',paddingLeft: 10}}/>
+                : <Icon name="ios-unlock" size={30} style = {{color: 'black',paddingLeft: 10}}/>
+              }
+            </TouchableOpacity>
           </>
       )}
 

@@ -20,12 +20,14 @@ export default class FindJourney extends React.Component {
       locations: '',
       dateFrom: '',
       dateTo: '',
-      minDate: ''
+      minDate: '',
+      cities: []
     };
   }
 
   async componentDidMount() {
     this.setState({minDate: moment().format('YYYY-MM-DD')});
+    this.setState({cities: Constant.cities});
   }
 
   onChange = async (locations) => {
@@ -60,7 +62,13 @@ export default class FindJourney extends React.Component {
 
   onSearch = async (locations, dateFrom, dateTo) => {
     console.log('on search');
-    console.log(locations+", "+dateFrom+", "+dateTo);
+    //console.log(locations+", "+dateFrom+", "+dateTo);
+    if(!locations) {
+      //console.log("here");
+      //console.log(this.getSelected());
+      locations = this.state.locations;
+    }
+    console.log(locations);
     if(locations || dateFrom || dateTo) {
       this.onSearchDestination(locations, dateFrom, dateTo);
 
@@ -80,7 +88,7 @@ export default class FindJourney extends React.Component {
       json.forEach((element, index) => {
           element.slides = [Environment.backend_ip+element.images.previousPath, Environment.backend_ip+element.images.currentPath, Environment.backend_ip+element.images.nextPath];
       });
-      console.log(json);
+      //console.log(json);
       this.setState({data: json});
       return json;
     } catch (error) {
@@ -98,13 +106,20 @@ export default class FindJourney extends React.Component {
       console.log(destination[0].name);
       this.setState({locations: destination[0].name})
     }else{
-      let destination = Constant.cities.filter(function(item){
-        return item.checked == true;
-      });
-      console.log(destination[0].name);
-      this.setState({locations: destination[0].name})
+      this.getSelected();
     }
   }
+  getSelected = async () => {
+    let destination = Constant.cities.filter(function(item){
+      return item.checked == true;
+    });
+    console.log(destination[0].name);
+    if(destination) {
+      this.setState({locations: destination[0].name});
+      return destination[0].name;
+    }
+  }
+
   onClear = async () => {
       this.setState({dateFrom: ''});
       this.setState({dateTo: ''});
@@ -112,7 +127,7 @@ export default class FindJourney extends React.Component {
       let destination = Constant.cities.filter(function(item){
         return item.checked == true;
       });
-      console.log(destination[0].checked = false);
+      //console.log(destination[0].checked = false);
       this.setState({locations: destination[0].name})
   }
 
@@ -135,16 +150,16 @@ export default class FindJourney extends React.Component {
                 />
                 <View style={styles.details}>
                   <View style={styles.easytravel}>
-                    <Text style={{color: '#ffffff', fontSize: 13, fontWeight: 'bold', textShadow: '1px 1px 1px #aaa'}}>easyTravel!</Text>
-                    <Text style={{color: '#ffffff', fontSize: 20, fontWeight: 'bold', textShadow: '1px 1px 1px #aaa'}}>Collect Moments</Text>
-                    <Text style={{color: '#ffffff', fontSize: 17, fontWeight: 'bold', textShadow: '1px 1px 1px #aaa'}}>not thinks.</Text>
+                    <Text style={{color: '#ffffff', fontSize: 13, fontWeight: 'bold'}}>easyTravel!</Text>
+                    <Text style={{color: '#ffffff', fontSize: 20, fontWeight: 'bold'}}>Collect Moments</Text>
+                    <Text style={{color: '#ffffff', fontSize: 17, fontWeight: 'bold'}}>not things.</Text>
                   </View>
 
                   <View style={styles.searchForm}>
                     <View style={styles.formInputSelect}>
                       <Select2
                         isSelectSingle={true} showSearchBox={true} selectButtonText="Select" cancelButtonText="Cancel" style={styles.selectItem} colorTheme={'green'}
-                        popupTitle='Select item' title='Destination...' searchPlaceHolderText="Type to search..." data={Constant.cities}
+                        popupTitle='Select item' title='Destination...' searchPlaceHolderText="Type to search..." data={this.state.cities}
                         onSelect={data => {this.onSelectItem(data)}}
                         onRemoveItem={data => {this.setState({locations: data })}}
                       />
@@ -168,7 +183,7 @@ export default class FindJourney extends React.Component {
                         <Text style={styles.bookingText}>Clear</Text>
                       </TouchableOpacity>
                       </View>
-                    <View  style={{ width: '50%', padding:1}}>
+                    <View style={{ width: '50%', padding:1}}>
                       <TouchableOpacity style={styles.search} onPress={() => {this.onSearch(locations, dateFrom, dateTo)}}>
                         <Text style={styles.bookingText}>Search</Text>
                       </TouchableOpacity>
@@ -210,7 +225,7 @@ const styles = StyleSheet.create({
   },
   imageComponent: {
     borderRadius: 0,
-    width: '97%',
+    width: '99%',
     marginTop: 5
   },
   easytravel:{
@@ -238,7 +253,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     color: 'white',
     padding: 2,
-    borderColor: '#707070',
+    borderColor: '#C0C0C0',
     borderRadius: 5
   },
   date:{
@@ -290,5 +305,14 @@ const styles = StyleSheet.create({
     bottom: 15,
     left: 16,
     fontSize: 18
+  },
+  dotStyle: {
+    width: 60,
+    height: 4,
+    borderRadius: 0,
+    marginHorizontal: 0,
+    padding: 0,
+    margin: 0,
+    backgroundColor: "rgba(128, 128, 128, 0.92)"
   },
 })
