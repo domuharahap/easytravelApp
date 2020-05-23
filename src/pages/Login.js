@@ -81,11 +81,11 @@ export default class Login extends React.Component {
   }
   unLock = async () => {
     if(this.state.lock){
-      console.log("username password is set");
-    }else {
       this.setState({username: "barnabassas"});
       this.setState({password: "barnabassas"});
       this.setState({lock: false});
+    }else {
+      console.log("username password is set");
     }
   }
 

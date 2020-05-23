@@ -5,7 +5,7 @@ import moment from 'moment';
 import Select2 from 'react-native-select-two';
 import AsyncStorage from '@react-native-community/async-storage';
 import Constant from '../config/Constant';
-
+import Icon from "react-native-vector-icons/Ionicons";
 
 export default class JourneyDetails extends React.Component {
   constructor(props) {
@@ -13,12 +13,13 @@ export default class JourneyDetails extends React.Component {
     this.state = {
       data: [],
       isLoading: false,
-      ccnumber: '6224 2266 8023 5740',
+      ccnumber: '',
       expiry:'',
-      cvc: '300',
-      month: '',
-      year: '',
-      username: ''
+      cvc: '',
+      months: '',
+      years: '',
+      username: '',
+      lock: true
     };
   }
 
@@ -68,6 +69,9 @@ export default class JourneyDetails extends React.Component {
     }else {
       console.log('form empty');
     }
+    
+    this.setMonthsCheck(1, false);
+    this.setYearsCheck(1, false);
   }
 
   showAlertSuccesBooking(bookingId) {
@@ -133,14 +137,59 @@ export default class JourneyDetails extends React.Component {
     }
   }
 
+  setYearsCheck = async(id, isChecked) => {
+    let years = Constant.years.filter(function(item){
+      item.id == id;
+      item.checked = isChecked;
+      return item;
+    });
+    this.setState({years: years[0].id});
+  }
+  setMonthsCheck = async(id, isChecked) => {
+    let months = Constant.months.filter(function(item){
+      item.id == id;
+      item.checked = isChecked;
+      return item;
+    });
+    this.setState({months: months[0].id});
+  }
+  unLock = async() => {
+    if(this.state.lock){
+      this.setState({ccnumber: "6224 2266 8023 5740"});
+      this.setState({cvc: "300"});
+
+      this.setMonthsCheck(1, true);
+      this.setYearsCheck(1, true);
+      this.setState({lock: false});
+    }else {
+      this.setMonthsCheck(1, false);
+      this.setYearsCheck(1, false);
+      this.setState({ccnumber: ""});
+      this.setState({cvc: ""});
+      this.setState({years: ""});
+      this.setState({months: ""});
+      this.setState({lock: true});
+    }
+  }
+
   render() {
     const { route, navigation } = this.props
     const { item, totalTraveler } = route.params
     return (
         <View style={styles.container}>
           <View style={styles.paymentContainer}>
-            <View style={styles.title}>
-              <Text>Payment Details</Text>
+            <View style={{flexDirection: 'row',padding: 5}}>
+                <View style={styles.title}>
+                  <Text style={{fontSize: 15, fontWeight: 'bold'}}>Payment Details</Text>
+                </View>
+                <View style={{width: '7%'}}>
+                  <TouchableOpacity onPress={this.unLock}>
+                    { this.state.lock
+                      ? <Icon name="ios-lock" size={20} style = {{color: 'black',paddingLeft: 10}}/>
+                      : <Icon name="ios-unlock" size={20} style = {{color: 'black',paddingLeft: 10}}/>
+                    }
+                  </TouchableOpacity>
+                </View>
             </View>
             <View style={styles.content}>
               <Text>CARD NUMBER</Text>
@@ -218,8 +267,7 @@ const styles = StyleSheet.create({
     margin: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: 20,
-    fontWeight: 'bold'
+    width: '93%'
   },
   paymentContainer:{
     backgroundColor: '#C0C0C0',
