@@ -67,9 +67,10 @@ export default class JourneyDetails extends React.Component {
         //TODO: invalid creditCard
       }
     }else {
+      this.setState({isLoading: false});
       console.log('form empty');
     }
-    
+
     this.setMonthsCheck(1, false);
     this.setYearsCheck(1, false);
   }

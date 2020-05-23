@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Constant from '../config/Constant'
 
 //TODO import Dynatrace
-import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
+//import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
 
 export default class JourneyDetails extends React.Component {
   constructor(props) {
@@ -49,7 +49,7 @@ export default class JourneyDetails extends React.Component {
       console.log(totalTraveler);
       if(this.state.isAuthenticated) {
         //TODO: identified username
-        Dynatrace.identifyUser(this.state.username);
+        //Dynatrace.identifyUser(this.state.username);
 
         this.props.navigation.navigate('Review', { item: item, totalTraveler: totalTraveler});
       }else {

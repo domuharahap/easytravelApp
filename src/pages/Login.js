@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from "react-native-vector-icons/Ionicons";
 
 //TODO: import Dynatrace
-import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
+//import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -71,7 +71,7 @@ export default class Login extends React.Component {
         if(user) {
 
           //onLogin Success Identify a user
-          Dynatrace.identifyUser(username);
+          //Dynatrace.identifyUser(username);
 
           await AsyncStorage.setItem('name', user.firstName+" "+user.lastName);
           await AsyncStorage.setItem("username", username);

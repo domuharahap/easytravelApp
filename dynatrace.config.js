@@ -36,8 +36,7 @@ module.exports = {
                         applicationId '66a45519-a5c4-46b4-bf98-02981bb5901d'
                         beaconUrl 'https://bf61178oyc.bf.dynatrace.com/mbeacon'
                     }
-                    debug.agentLogging true
-                    debug.certificateValidation false
+                    debug.agentLogging false
                 }
             }
         }

@@ -57,7 +57,7 @@ export default class JourneyDetails extends React.Component {
 
         </ScrollView>
         <View style={styles.booking}>
-          <TouchableOpacity onPress={() => { navigation.navigate('Payment', { item: item, totalTraveler: totalTraveler })}}>
+          <TouchableOpacity  onPress={() => { navigation.navigate('Payment', { item: item, totalTraveler: totalTraveler })}}>
             <Text style={styles.bookingText}>Pay ${item.amount.toFixed(2)}</Text>
           </TouchableOpacity>
         </View>
