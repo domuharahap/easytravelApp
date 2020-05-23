@@ -7,7 +7,7 @@
 
 module.exports = {
   transformer: {
-    babelTransformerPath: require.resolve('@dynatrace/react-native-plugin/lib/dynatrace-transformer'),
+    //babelTransformerPath: require.resolve('@dynatrace/react-native-plugin/lib/dynatrace-transformer'),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
@@ -15,5 +15,5 @@ module.exports = {
       },
     }),
   },
-  reporter: require("@dynatrace/react-native-plugin/lib/dynatrace-reporter")
+  //reporter: require("@dynatrace/react-native-plugin/lib/dynatrace-reporter")
 };

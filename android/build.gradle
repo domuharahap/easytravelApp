@@ -1,7 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-apply from: "../node_modules/@dynatrace/react-native-plugin/files/plugin.gradle", to: buildscript
     ext {
         buildToolsVersion = "28.0.3"
         minSdkVersion = 21
@@ -37,5 +36,3 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
-
-apply from: "../node_modules/@dynatrace/react-native-plugin/files/dynatrace.gradle"

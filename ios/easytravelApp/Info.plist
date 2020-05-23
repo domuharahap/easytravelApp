@@ -72,13 +72,5 @@
       <string>SimpleLineIcons.ttf</string>
       <string>Zocial.ttf</string>
     </array>
-    <key>DTXApplicationID</key>
-    <string>66a45519-a5c4-46b4-bf98-02981bb5901d</string>
-    <key>DTXBeaconURL</key>
-    <string>https://bf61178oyc.bf.dynatrace.com/mbeacon</string>
-    <key>DTXLogLevel</key>
-    <string>ALL</string>
-    <key>DTXUserOptIn</key>
-    <true/>
   </dict>
 </plist>
