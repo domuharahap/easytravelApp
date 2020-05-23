@@ -18,7 +18,7 @@ This demo applications for Dynatrace easy travel, this apps develop based on eas
 * Copy domain of easyTravel Angular Rest backend to `src/config/Environment`. replace both `backend_enpoint` and `backend_enpoint`.
 * Run `react-native run-android` or `react-native start` in a terminal from the project root.
 
-_Note: See [Disable Warning: calling getNode()..](https://github.com/archriss/react-native-snap-carousel/issues/672) if you want the disable the warning when open easyTravel menu._
+_Note: See this post [Disable Warning: calling getNode()..](https://github.com/archriss/react-native-snap-carousel/issues/672) to disable warning popup on screen when navigate._
 
 ### Instrumentation
 _Node: Instrument this app with [Dynatrace React Native PLugin](https://www.npmjs.com/package/@dynatrace/react-native-plugin#installPlugin). sample instrumentations screen attached ._
