@@ -4,9 +4,9 @@ This demo applications for Dynatrace easy travel, this apps develop based on eas
 
 ## Screen easyTravelApp sample
 
-![Alt text](/docs/easytraveleasytravel-home.png?raw=true "Home Pages")
-![Alt text](/docs/easytraveleasytravel-search.png?raw=true "Home Pages")
-![Alt text](/docs/easytraveleasytravel-speccialoffer.png?raw=true "Home Pages")
+![Home Screen](/docs/easytraveleasytravel-home.png?raw=true "Home Pages")
+![FindJourney Screen](/docs/easytraveleasytravel-search.png?raw=true "Searc")
+![SpecialOffer Screen](/docs/easytraveleasytravel-speccialoffer.png?raw=true "SpecialOffer")
 
 
 ## Getting Started
@@ -22,6 +22,6 @@ _Note: See [Disable Warning: calling getNode()..](https://github.com/archriss/re
 
 ### Instrumentation
 _Node: Instrument this app with [Dynatrace React Native PLugin](https://www.npmjs.com/package/@dynatrace/react-native-plugin#installPlugin). sample instrumentations screen attached ._
-![Alt text](/docs/easytraveleasytravelapp-applications.png?raw=true "Home Pages")
-![Alt text](/docs/easytraveleasytravel-usertag.png?raw=true "Home Pages")
-![Alt text](/docs/easytraveleasytravel-useractions.png?raw=true "Home Pages")
+![Applications Analysis](/docs/easytraveleasytravelapp-applications.png?raw=true "apps")
+![Usertaggin](/docs/easytraveleasytravel-usertag.png?raw=true "tag")
+![Useraction Analysis](/docs/easytraveleasytravel-useractions.png?raw=true "useractions")
