@@ -4,6 +4,9 @@ import Environment from '../config/Environment';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from "react-native-vector-icons/Ionicons";
 
+//TODO: import Dynatrace
+import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +29,8 @@ export default class Login extends React.Component {
     const username = await AsyncStorage.getItem("username");
     const password = await AsyncStorage.getItem("password");
     const name = await AsyncStorage.getItem("name");
-    if(username && password){
+    console.log(username);
+    if(username){
       this.setState({username: username});
       this.setState({password: password});
       this.setState({name: name});
@@ -41,6 +45,7 @@ export default class Login extends React.Component {
        await AsyncStorage.clear();
        this.setState({username: ""});
        this.setState({password: ""});
+       this.setState({name: ""});
        this.setState({authenticated: false});
        this.setState({lock: true});
     }catch (err) {
@@ -48,7 +53,7 @@ export default class Login extends React.Component {
     }
   }
 
-  authenticate=(username, password)=>{
+  authenticate = async (username, password) => {
     this.setState({isLoading:true,message:""})
 
     fetch(Environment.backend_enpoint+'login', {
@@ -64,11 +69,18 @@ export default class Login extends React.Component {
       .then(async (json) => {
         const user = json.user;
         if(user) {
+
+          //onLogin Success Identify a user
+          Dynatrace.identifyUser(username);
+
           await AsyncStorage.setItem('name', user.firstName+" "+user.lastName);
           await AsyncStorage.setItem("username", username);
           await AsyncStorage.setItem("email", user.email);
           await AsyncStorage.setItem("password", password);
-          this.setState({authenticate: true});
+          this.setState({authenticated: true});
+          this.setState({username: username});
+          this.setState({password: password});
+          this.setState({name: user.firstName+" "+user.lastName});
           this.props.navigation.navigate("Home");
         }else{
           console.log("invalid login");

@@ -7,6 +7,8 @@ import DatePicker from 'react-native-datepicker';
 
 import Constant from '../config/Constant';
 import Environment from '../config/Environment';
+//TODO: add manual instrumentation
+import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
 
 export default class FindJourney extends React.Component {
   constructor(props) {
@@ -45,12 +47,17 @@ export default class FindJourney extends React.Component {
 
   async findLocations(locations) {
     try {
+      let dtAction = Dynatrace.enterAction("Find locations");
+      //Perform the action and whatever else is needed.
       let response = await fetch(Environment.backend_enpoint+'locations?match='+locations, {
         method: 'GET', // or 'PUT'
         headers: Environment.headers,
         credentials: 'same-origin'
       });
       let json = await response.json();
+
+      dtAction.leaveAction();
+      
       return json;
     } catch (error) {
       console.log("error search");

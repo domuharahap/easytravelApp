@@ -7,6 +7,9 @@ import Select2 from 'react-native-select-two';
 import AsyncStorage from '@react-native-community/async-storage';
 import Constant from '../config/Constant'
 
+//TODO import Dynatrace
+import { Dynatrace, Platform } from '@dynatrace/react-native-plugin';
+
 export default class JourneyDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +19,8 @@ export default class JourneyDetails extends React.Component {
       selectedTravelers: 1,
       //TODO: changed the authentication to default false
       isAuthenticated: false,
-      travelersEmpty: false
+      travelersEmpty: false,
+      username: '',
     };
   }
 
@@ -29,6 +33,7 @@ export default class JourneyDetails extends React.Component {
 
   login = async () => {
       const username = await AsyncStorage.getItem("username");
+      this.setState({username: username});
       //console.log(username);
       if(username){
         this.setState({isAuthenticated: true});
@@ -43,6 +48,9 @@ export default class JourneyDetails extends React.Component {
     }else {
       console.log(totalTraveler);
       if(this.state.isAuthenticated) {
+        //TODO: identified username
+        Dynatrace.identifyUser(this.state.username);
+
         this.props.navigation.navigate('Review', { item: item, totalTraveler: totalTraveler});
       }else {
         this.props.navigation.navigate('Signin');

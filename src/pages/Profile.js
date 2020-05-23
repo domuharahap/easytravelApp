@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Environment from '../config/Environment';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default class Login extends React.Component {
+export default class Profile extends React.Component {
   constructor(props) {
     super(props);
-
     this.state={
       username:"",
       password:"",
@@ -15,7 +14,8 @@ export default class Login extends React.Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    console.log("load user");
     this.login();
   }
 
@@ -23,8 +23,8 @@ export default class Login extends React.Component {
     const name = await AsyncStorage.getItem("name");
     const username = await AsyncStorage.getItem("username");
     const password = await AsyncStorage.getItem("password");
-    console.log(name);
-    if(username && password){
+    //console.log(username);
+    if(username){
       this.setState({name: name});
       this.setState({username: username});
       this.setState({password: password});
@@ -46,7 +46,7 @@ export default class Login extends React.Component {
 
   render(){
     const { navigation } = this.props;
-    const { isLoading } = this.state;
+    const { name } = this.state;
 
     return(
       <View style={styles.container}>
