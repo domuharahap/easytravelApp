@@ -1,5 +1,5 @@
 export default {
-  backend_endpoint: 'http://ec2-34-224-222-25.compute-1.amazonaws.com:9080/',
+  backend_endpoint: 'http://ec2-34-226-195-55.compute-1.amazonaws.com:9080/',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
