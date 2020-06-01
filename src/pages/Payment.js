@@ -87,7 +87,7 @@ export default class JourneyDetails extends React.Component {
 
   async validateCreditCard(number) {
     try {
-      let response = await fetch(Environment.backend_enpoint+'validate-creditcard', {
+      let response = await fetch(Environment.backend_endpoint+'easytravel/rest/validate-creditcard', {
         method: 'POST', // or 'PUT'
         headers: Environment.headers,
         credentials: 'same-origin',
@@ -105,7 +105,7 @@ export default class JourneyDetails extends React.Component {
   async bookings(amount, number, journeyId, travelers, username) {
     try {
       console.log(amount+", "+number+", "+journeyId+", "+travelers+", "+username);
-      let response = await fetch(Environment.backend_enpoint+'bookings/', {
+      let response = await fetch(Environment.backend_endpoint+'easytravel/rest/bookings/', {
         method: 'POST',
         headers: {
           Accept: 'application/json', 'Content-Type': 'application/json'

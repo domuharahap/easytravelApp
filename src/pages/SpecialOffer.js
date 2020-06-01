@@ -21,7 +21,7 @@ export default class SepecialOffer extends React.Component {
   //TODO: sepecial offer data
   onloadSpecialOffer = async () => {
       this.setState({isLoading: true});
-      await fetch(Environment.backend_enpoint+'journeys/special-offers', {
+      await fetch(Environment.backend_endpoint+'easytravel/rest/journeys/special-offers', {
         method: 'GET', // or 'PUT'
         headers: Environment.headers,
         credentials: 'same-origin'
@@ -30,7 +30,7 @@ export default class SepecialOffer extends React.Component {
       .then(async (json) => {
         //console.log(json);
         json.forEach((element, index) => {
-            element.slides = [Environment.backend_ip+element.images.previousPath, Environment.backend_ip+element.images.currentPath, Environment.backend_ip+element.images.nextPath];
+            element.slides = [Environment.backend_endpoint+element.images.previousPath, Environment.backend_endpoint+element.images.currentPath, Environment.backend_endpoint+element.images.nextPath];
         });
         this.setState({data: json});
       })

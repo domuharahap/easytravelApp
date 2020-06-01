@@ -18,7 +18,7 @@ export default class FindJourney extends React.Component {
       data: [],
       isLoading: false,
       search: '',
-      images: [Environment.backend_ip+'/assets/imgs/hero-bg.jpg'],
+      images: [Environment.backend_endpoint+'assets/imgs/hero-bg.jpg'],
       locations: '',
       dateFrom: '',
       dateTo: '',
@@ -49,7 +49,7 @@ export default class FindJourney extends React.Component {
     try {
       //let dtAction = Dynatrace.enterAction("Find locations");
       //Perform the action and whatever else is needed.
-      let response = await fetch(Environment.backend_enpoint+'locations?match='+locations, {
+      let response = await fetch(Environment.backend_endpoint+'easytravel/rest/locations?match='+locations, {
         method: 'GET', // or 'PUT'
         headers: Environment.headers,
         credentials: 'same-origin'
@@ -86,14 +86,14 @@ export default class FindJourney extends React.Component {
 
   async onSearchDestination(locations, dateFrom, dateTo) {
     try {
-      let response = await fetch(Environment.backend_enpoint+'journeys/?match='+locations+"&from="+dateFrom+"&to="+dateTo, {
+      let response = await fetch(Environment.backend_endpoint+'easytravel/rest/journeys/?match='+locations+"&from="+dateFrom+"&to="+dateTo, {
         method: 'GET',
         headers: Environment.headers,
         credentials: 'same-origin'
       });
       let json = await response.json();
       json.forEach((element, index) => {
-          element.slides = [Environment.backend_ip+element.images.previousPath, Environment.backend_ip+element.images.currentPath, Environment.backend_ip+element.images.nextPath];
+          element.slides = [Environment.backend_endpoint+element.images.previousPath, Environment.backend_endpoint+element.images.currentPath, Environment.backend_endpoint+element.images.nextPath];
       });
       //console.log(json);
       this.setState({data: json});

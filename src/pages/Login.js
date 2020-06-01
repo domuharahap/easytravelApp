@@ -56,7 +56,7 @@ export default class Login extends React.Component {
   authenticate = async (username, password) => {
     this.setState({isLoading:true,message:""})
 
-    fetch(Environment.backend_enpoint+'login', {
+    fetch(Environment.backend_endpoint+'easytravel/rest/login', {
         method: 'POST', // or 'PUT'
         headers: Environment.headers,
         credentials: 'same-origin',
