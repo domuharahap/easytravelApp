@@ -14,7 +14,7 @@ This demo applications for Dynatrace easy travel, this apps develop based on eas
 * Install the ionic CLI globally: `npm install -g react-native-cli`
 * Clone this repository: `git clone easyTravelApp`.
 * run npm install or yarn install to download all modules : `npm install` or `yarn install`.
-* Copy domain of easyTravel Angular Rest backend to `src/config/Environment`. replace both `backend_enpoint` and `backend_ip`.
+* Copy domain of easyTravel Angular Rest backend to `src/config/Environment`. replace both `backend_endpoint`.
 * Run `react-native run-android` or `react-native start` in a terminal from the project root.
 
 _Note: See this post [Disable Warning: calling getNode()..](https://github.com/archriss/react-native-snap-carousel/issues/672) to disable warning popup on screen when navigate._
